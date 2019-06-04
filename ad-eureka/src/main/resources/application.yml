@@ -1,6 +1,7 @@
 spring:
   application:
     name: ad-eureka
+#  profiles: eureka-server
 server:
   port: 8000
 eureka:
