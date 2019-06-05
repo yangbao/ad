@@ -11,6 +11,10 @@
 
     <artifactId>imooc-ad-service</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ad-common</module>
+        <module>ad-sponsor</module>
+    </modules>
     <packaging>pom</packaging>
 
 </project>
