@@ -1,0 +1,27 @@
+server:
+  port: 7000
+  servlet:
+    context-path: /ad-sponsor #所有controller的前缀
+
+spring:
+  application:
+    name: eureka-client-ad-sponsor
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none #每一次加载hibernate的时候做的事情
+    properties:
+      hibernate.format_sql: true
+    open-in-view: false #防止 spring jpa 的过程中经常遇到懒加载的错误
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/imooc_ad_data?autoReconnect=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 108512
+    tomcat: # 数据库连接池
+      max-active: 4
+      min-idle: 2
+      initial-size: 2
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

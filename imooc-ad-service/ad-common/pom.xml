@@ -32,7 +32,7 @@
         SpringBoot的Maven插件, 能够以Maven的方式为应用提供SpringBoot的支持，可以将
         SpringBoot应用打包为可执行的jar或war文件, 然后以通常的方式运行SpringBoot应用
      -->
-    <build>
+   <!-- <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -40,6 +40,6 @@
             </plugin>
         </plugins>
     </build>
-
+-->
 
 </project>
