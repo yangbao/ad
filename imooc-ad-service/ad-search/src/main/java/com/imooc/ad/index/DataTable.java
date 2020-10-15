@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * 缓存,所有的索引服务类放在一个map里面 避免注入太多, 只需要注入一个databale - 类似目录,.
+ * 缓存,所有的索引服务类放在一个map里面 避免注入太多, 只需要注入一个databale - 类似目录,. 不让需要太多的注入
  * ApplicationContextAware: 得到ApplicationContext 对象的接口
  * PriorityOrdered 加载的优先级
  */

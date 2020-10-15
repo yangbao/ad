@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Qinyi.
+ * binlog到row data的映射
  */
 @Data
 public class BinlogRowData {
@@ -16,7 +16,7 @@ public class BinlogRowData {
 
     private EventType eventType;
 
-    private List<Map<String, String>> after;
+    private List<Map<String, String>> after; //增加和删除都用这个, 更新之后的数据
 
     private List<Map<String, String>> before;
 }

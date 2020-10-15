@@ -23,6 +23,9 @@ import com.imooc.ad.index.interest.UnitItIndex;
 import com.imooc.ad.index.keyword.UnitKeywordIndex;
 import com.imooc.ad.mysql.constant.OpType;
 import com.imooc.ad.utils.CommonUtils;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
@@ -31,7 +34,7 @@ import java.util.Set;
 
 /** 从数据文件中来构造全量索引的handler  **table-->**Object
  *
- * 1. 索引之间存在着层级的划分, 也就是依赖关系的划分. 处理的最高层级 是level2 level1 是User 参考架构图
+ * 1. 索引之间存在着层级的划分, 也就是依赖关系的划分. 处理的最高层级 是level2 ,level1 是User并不需要 参考架构图
  * 2. 加载全量索引其实是增量索引 "添加" 的一种特殊实现; 可以统一全量和增量索引的实现
  * Created by Qinyi.
  */
@@ -149,7 +152,7 @@ public class AdLevelDataHandler {
                 unitDistrictTable.getProvince(),
                 unitDistrictTable.getCity()
         );
-        //Collections.singleton- 方法调用返回一个不可变的集合只包含指定对象
+        //Collections.singleton- 方法调用返回一个不可变的集合只包含指定对象.
         Set<Long> value = new HashSet<>( Collections.singleton(unitDistrictTable.getUnitId()));
         handleBinlogEvent(
                 DataTable.of(UnitDistrictIndex.class),
@@ -232,5 +235,22 @@ public class AdLevelDataHandler {
             default:
                 break;
         }
+    }
+
+    public static void main(String[] args) {
+        String init[] = { "One", "Two", "Three", "One", "Two", "Three" };
+
+        // create two lists
+        List list1 = new ArrayList(Arrays.asList(init));
+        List list2 = new ArrayList(Arrays.asList(init));
+
+        // remove from list1
+        list1.remove("One");
+        System.out.println("List1 value: "+list1);
+
+        System.out.println(Collections.singleton("One"));
+        // remove from list2 using singleton
+        list2.removeAll(Collections.singleton("One"));
+        System.out.println("The SingletonList is :"+list2);
     }
 }

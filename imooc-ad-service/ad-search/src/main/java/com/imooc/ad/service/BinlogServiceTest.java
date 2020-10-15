@@ -29,6 +29,8 @@ public class BinlogServiceTest {
             } else if (data instanceof DeleteRowsEventData) {
                 System.out.println("Delete--------------");
                 System.out.println(data.toString());
+            }else {
+                System.out.println("Other--------------");
             }
         });
         client.connect();  //标识开始监听

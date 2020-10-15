@@ -23,7 +23,7 @@ public class TableTemplate {
     private Map<OpType, List<String>> opTypeFieldSetMap = new HashMap<>();
 
     /**
-     * 字段索引 -> 字段名, binlog 里面没有列名 所以需要这个映射
+     * 字段索引 -> 字段名, binlog 里面没有列名,只有列的索引, 所以需要这个映射
      * */
     private Map<Integer, String> posMap = new HashMap<>();
 }

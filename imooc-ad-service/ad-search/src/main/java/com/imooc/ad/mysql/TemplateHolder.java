@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * 完全的从template文件到数据库的对应, binlog里面因为是返回位置编号.
+ * 解析模板文件
  */
 @Slf4j
 @Component
@@ -44,13 +45,14 @@ public class TemplateHolder {
     public TableTemplate getTable(String tableName) {
         return template.getTableTemplateMap().get(tableName);
     }
-
+    //加载模板json文件的具体实现
     private void loadJson(String path) {
 
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         InputStream inStream = cl.getResourceAsStream(path);
 
         try {
+            //装载json文件到template对象
             Template template = JSON.parseObject(
                     inStream,
                     Charset.defaultCharset(),
@@ -64,7 +66,7 @@ public class TemplateHolder {
             throw new RuntimeException("fail to parse json file");
         }
     }
-
+    //列序号到列名映射的具体实现
     private void loadMeta() {
 
         for (Map.Entry<String, TableTemplate> entry :
@@ -84,7 +86,7 @@ public class TemplateHolder {
 
             jdbcTemplate.query(SQL_SCHEMA, new Object[]{
                     template.getDatabase(), table.getTableName()
-            }, (rs, i) -> {
+            }, (rs, i) -> {//对查询结果的处理
                 //位置和name的映射
                 int pos = rs.getInt("ORDINAL_POSITION");
                 String colName = rs.getString("COLUMN_NAME");

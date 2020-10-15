@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 /**
- * 解析模板文件
+ * 模板文件对应的实体类, template.json
  */
 @Data
 public class ParseTemplate {
@@ -34,10 +34,9 @@ public class ParseTemplate {
             tableTemplate.setLevel(level.toString());
             template.tableTemplateMap.put(name, tableTemplate);
 
-            // 遍历操作类型对应的列
-            Map<OpType, List<String>> opTypeFieldSetMap =
-                    tableTemplate.getOpTypeFieldSetMap();
-
+            // 遍历操作类型对应的列, 把增删改查的列 保存起来
+            Map<OpType, List<String>> opTypeFieldSetMap = tableTemplate.getOpTypeFieldSetMap();
+            //table需要的列写到了配置文件中. template.json
             for (JsonTable.Column column : table.getInsert()) {
                 getAndCreateIfNeed(
                         OpType.ADD,

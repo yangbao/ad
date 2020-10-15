@@ -1,4 +1,3 @@
-//列举需要的字段, 将来为了解析数据库的binlog
 {
   "database": "imooc_ad_data",
   "tableList": [

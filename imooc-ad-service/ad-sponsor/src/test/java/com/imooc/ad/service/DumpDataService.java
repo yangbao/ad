@@ -48,8 +48,8 @@ import static java.nio.file.StandardOpenOption.CREATE;
  */
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {Application.class},
-        webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@SpringBootTest(classes = {Application.class}, //启动类
+        webEnvironment = SpringBootTest.WebEnvironment.NONE)//不需要web环境
 public class DumpDataService {
 
     @Autowired
@@ -67,6 +67,7 @@ public class DumpDataService {
     @Autowired
     private AdUnitKeywordRepository keywordRepository;
 
+    //用于执行下面各个表和导数文件的操作
     @Test
     public void dumpAdTableData() {
 
@@ -98,16 +99,16 @@ public class DumpDataService {
                         DConstant.AD_UNIT_KEYWORD)
         );
     }
-
+    //导出db数据到json文件
     private void dumpAdPlanTable(String fileName) {
-
+        //AdPlan 数据库对应的entity
         List<AdPlan> adPlans = planRepository.findAllByPlanStatus(
                 CommonStatus.VALID.getStatus()
         );
         if (CollectionUtils.isEmpty(adPlans)) {
             return;
         }
-
+        //AdPlanTable json文件对应的entity
         List<AdPlanTable> planTables = new ArrayList<>();
         adPlans.forEach(p -> planTables.add(
                 new AdPlanTable(
@@ -125,7 +126,6 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(planTable));
                 writer.newLine();
             }
-            writer.close();
         } catch (IOException ex) {
             log.error("dumpAdPlanTable error"+ex.getMessage());
         }
@@ -156,7 +156,7 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(unitTable));
                 writer.newLine();
             }
-            writer.close();
+           
         } catch (IOException ex) {
             log.error("dumpAdUnitTable error");
         }
@@ -189,7 +189,7 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(creativeTable));
                 writer.newLine();
             }
-            writer.close();
+           
         } catch (IOException ex) {
             log.error("dumpAdCreativeTable error");
         }
@@ -216,7 +216,7 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(creativeUnitTable));
                 writer.newLine();
             }
-            writer.close();
+           
         } catch (IOException ex) {
             log.error("dumpAdCreativeUnit error");
         }
@@ -244,7 +244,7 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(unitDistrictTable));
                 writer.newLine();
             }
-            writer.close();
+           
         } catch (IOException ex) {
             log.error("dumpAdUnitDistrictTable error");
         }
@@ -271,7 +271,7 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(unitItTable));
                 writer.newLine();
             }
-            writer.close();
+           
         } catch (IOException ex) {
             log.error("dumpAdUnitItTable error");
         }
@@ -298,7 +298,7 @@ public class DumpDataService {
                 writer.write(JSON.toJSONString(unitKeywordTable));
                 writer.newLine();
             }
-            writer.close();
+           
         } catch (IOException ex) {
             log.error("dumpAdUnitItTable error");
         }

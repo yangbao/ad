@@ -26,9 +26,9 @@ import java.util.stream.Collectors;
  * 从文件中加载全量索引
  */
 @Component
-@DependsOn("dataTable") //Bean之间依赖关系
+@DependsOn("dataTable") //Bean之间依赖关系, 表示依赖, 应该先初始化dataTable. 而不是持有dataTable对象, 那样的话就是注入了.
 public class IndexFileLoader {
-    //执行时间 IndexFileLoader 被加载到Spring容器后就执行
+    //执行时间 IndexFileLoader Spring容器启动后就执行
     @PostConstruct
     public void init() {
 
@@ -102,8 +102,8 @@ public class IndexFileLoader {
                 OpType.ADD
         ));
     }
-    //读取文件-->string, 没一行是一个string
-    private List<String> loadDumpData(String fileName) {
+    //读取文件内容转换成-->List<string>, 每一行是一个string
+    private static List<String> loadDumpData(String fileName) {
 
         try (BufferedReader br = Files.newBufferedReader(
                 Paths.get(fileName))) {
@@ -112,5 +112,10 @@ public class IndexFileLoader {
         } catch (IOException ex) {
             throw new RuntimeException(ex.getMessage());
         }
+    }
+
+    public static void main(String[] args) {
+        List<String> l = loadDumpData("e:/Users/bgkp/imooc/mysql_data/ad_unit_keyword.data");
+        l.forEach(item -> System.out.println(item));
     }
 }
