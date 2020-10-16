@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Qinyi.
+ * 增量索引的时候使用
  */
 @Data
 @NoArgsConstructor
@@ -22,6 +22,6 @@ public class MySqlRowData {
     private String level;
 
     private OpType opType;
-
+    //就是after的新值
     private List<Map<String, String>> fieldValueMap = new ArrayList<>();
 }

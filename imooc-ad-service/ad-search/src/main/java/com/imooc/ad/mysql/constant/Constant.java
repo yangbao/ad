@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Qinyi.
+ * 表和json配置文件的对应
  */
 public class Constant {
 
